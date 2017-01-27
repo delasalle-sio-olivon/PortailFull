@@ -1,0 +1,124 @@
+.container-fluid{
+	max-width : 1300px;	
+}
+nav{
+    transition: height 0.5s, margin 0.5s, background 0.5s;
+
+    margin-bottom : 0px;
+    position : fixed;
+    width : 100vw;
+    top : 0;
+    left : 0;
+
+    z-index: 10;
+    height: 52px;
+
+}
+
+.navbar{
+    border-radius: 0px;
+    background-color: #1976D2;
+    box-shadow: rgb(100, 100, 100) 0px 0px 3px 0px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+    background-color: inherit;
+}
+
+.top{
+    transition: height 0.5s, margin 0.5s, background 0.5s, line-height 0.5s;
+
+    margin-bottom: -50px;
+    background-color: #2196F3;
+    box-shadow: none;
+    border: none;
+    z-index: 3;
+    height: 50px;
+   
+
+}
+
+.top .navbar-brand{
+    transition : font-size 0.5s, line-height 0.5s;
+}
+
+.top a{
+    transition : font-size 0.5s, line-height 0.5s;
+    background-color: none;
+}
+
+a, .navbar-brand{
+    transition : font-size 0.5s, line-height 0.5s;
+}
+
+a:hover{
+	color : #64FFDA;
+}
+
+.caret{
+	color : inherit;
+}
+
+.block-init{
+    transition: height 0.5s;
+    background-color: #2196F3;
+    height : 50px;
+}
+
+
+
+.block{
+    width: 100%;
+}
+
+.logo{
+
+    transition: height 0.5s, margin 0.5s, background 0.5s;
+
+    margin-bottom : 0px;
+    position : fixed;
+    width : 300px;
+    top : 0;
+    left : 0;
+
+    z-index: 10;
+    height: 52px;
+    background-image: url(../resources/views/front/app/ressource/images/logo.png);
+    background-repeat: no-repeat;
+    background-position: 0 42%;
+    background-size : auto 150px;
+
+}
+
+.logoTop{
+    height: 150px;
+    background-size: auto 250 ;
+}
+
+    .logo{
+        display: none;
+    }
+
+
+.navbar-brand{
+    line-height: 20px;
+}
+
+.nav .open > a{
+	background-color : transparent;
+	color : #64FFDA;
+}
+
+.open > .dropdown-menu {
+	-webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+    -moz-column-rule-style: solid; /* Firefox */
+    column-rule-style: solid;
+    
+    -webkit-column-rule-width: 1px; /* Chrome, Safari, Opera */
+    -moz-column-rule-width: 1px; /* Firefox */
+    column-rule-width: 1px;
+    
+    -webkit-column-rule-color: rgba(0,0,0,0.15); /* Chrome, Safari, Opera */
+    -moz-column-rule-color: rgba(0,0,0,0.15); /* Firefox */
+    column-rule-color: rgba(0,0,0,0.15);
+}

@@ -1,0 +1,50 @@
+td a, td span {
+    text-decoration:none;
+    color : inherit;
+}
+
+td:hover{
+    color: #00BFA5 !important;
+}
+
+td{
+	cursor : pointer;
+	color: rgba(000,000,000,0.87);
+}
+
+.card-title{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height : 30px;
+	cursor : pointer;
+}
+
+.card{
+	height : 160px;
+	margin-bottom : 15px;
+}
+
+img{
+	height :100px;
+	width : auto;
+	display : inline;
+	line-height : 100px;
+}
+
+[md-card-image]:first-child {
+    margin-top: 0;
+}
+
+.img-container{
+	max-width : 100%;
+	
+	text-align : center;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor : pointer:
+}
+
+.card-home{
+	margin-bottom : 15px;
+}

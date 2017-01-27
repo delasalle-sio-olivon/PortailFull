@@ -1,0 +1,11 @@
+<div class="select">
+    <label>{{ label }} </label>
+    <ng-select (data)="a"
+              [active]="select"
+              [multiple]="true"
+              [items]="list"
+              (data)="refreshValue($event)"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              [placeholder]="placeholder"></ng-select>
+</div>

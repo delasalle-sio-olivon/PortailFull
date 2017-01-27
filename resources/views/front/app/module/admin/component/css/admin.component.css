@@ -1,0 +1,8 @@
+.container-fluid{
+    max-width : 1300px;
+    padding-top : 20px;
+}
+.panel{
+    max-height: 90vh;
+    overflow-y:scroll;
+}

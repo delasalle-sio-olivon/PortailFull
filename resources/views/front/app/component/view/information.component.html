@@ -1,0 +1,23 @@
+<div>
+  <div class="media">
+    <div class="media-left">
+      <div class="img thumbnail" (click)="this.selectInformation()">
+        <img  class="media-object" [src]="'../resources/views/front/app/resources/img/informations/' + this.information.id + '.png'" alt="...">
+      </div>
+    </div>
+    <div class="media-body">
+      <div class="panel panel-default information">
+        <div class="panel-heading"><h3><span *ngIf="recherche && information.parents.length > 1" [mdMenuTriggerFor]="menu" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span><a *ngIf="recherche" (click)="this.linkToParent(information.parents[0].unix)"> {{ information.parents[0].titre }} / </a><span (click)="this.selectInformation()">{{this.information.titre}}</span></h3></div>
+        <div class="panel-body">
+          {{this.information.detail}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<md-menu #menu="mdMenu">
+  <button *ngFor="let parent of information.parents" md-menu-item (click)="this.linkToParent(parent.unix)">
+    <span>{{ parent.titre }}</span>
+  </button>
+</md-menu>

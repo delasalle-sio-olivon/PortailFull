@@ -1,0 +1,14 @@
+<div class="container-fluid" *ngIf="!loading" >
+    <div class="filedariane" *ngIf="!this.isHome()">
+    	<a (click)="this.home()" >
+    		<em>Accueil</em>
+    	</a>
+    	<a *ngFor="let composite of this.fileDArianeObj.composites ; let i = index" (click)="this.selectComposite(i)">
+    		<em>
+    			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    			{{ composite?.titre }}
+    		</em>
+    	</a>
+    </div>
+    <div class="filedariane" *ngIf="this.isHome()"><a (click)="this.home()"><em>Accueil<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></em></a></div>
+</div>

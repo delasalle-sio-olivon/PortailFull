@@ -1,0 +1,39 @@
+.media-left{
+    padding-bottom: 20px; 
+}
+
+img{
+    height : 100%;
+    max-width: none;
+}
+
+.img{
+    overflow: hidden;
+    width : 130px;
+    height : 120px;
+    margin-bottom: 0;
+}
+
+.information{
+    margin-bottom: 0;
+}
+
+h3{
+    margin : 0;
+    font-size: 20px;
+}
+
+.glyphicon{
+	font-size : 10px;
+	cursor : pointer;
+}
+
+a{
+	cursor : pointer;
+	text-decoration : none;
+	color : #2196F3;
+}
+
+a:hover{
+	color : #00BFA5;
+}

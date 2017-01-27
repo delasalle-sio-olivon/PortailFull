@@ -1,0 +1,53 @@
+<div class="mid">
+    <div class="mid-full">
+        <div class="mid-main">
+            <search [fileDAriane]="fileDAriane"></search>
+            <div *ngIf="hasCategorieSelected()">
+                <h4 class="light">{{categorieSelected.titre}}</h4>
+                <h6 class="light">{{categorieSelected.resume}}</h6>
+            </div>
+            <div *ngIf="hasInformationSelected()">
+                <h4 class="light">{{informationSelected.titre}}</h4>
+            </div>
+            <div *ngIf="isHome()">
+                <h4 class="light">Portail</h4>
+            </div>
+            <div  *ngIf="isLoading()">
+                <h4 class="light">  </h4>
+            </div>
+            <div  *ngIf="isRecherche()">
+                <h4 class="light">Résultat de la recheche pour : {{ rechercheContent }}</h4>
+                <!--<h6 *ngIf="hasParentRecherche()" class="light">dans la catégorie {{ parentRecherche }} et ses sous-catégories</h6>-->
+            </div>
+        </div>
+    </div>
+    <file-d-ariane *ngIf="!isLoading()" [fileDAriane]="fileDAriane" [recherche]="recherche"></file-d-ariane>
+</div>
+
+<div *ngIf="hasCategories()" class="content container-fluid">
+    <div class="row">
+        <div *ngFor="let a of this.col; let i = index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <categorie *ngFor="let categorie of (this.categories | asCol:3:i)" [categorie]="categorie" [home]="isHome()"></categorie>
+        </div>
+    </div>    
+</div>
+
+<div *ngIf="hasInformations()" class="content container-fluid">
+    <information *ngFor="let information of this.informations" [information]="information" [recherche]="isRecherche()"></information>
+</div>
+
+<div *ngIf="hasInformationSelected()" class="content container-fluid">
+    {{ this.informationSelected.detail }}
+</div>
+
+<div class="container-fluid" *ngIf="error || (!hasInformationSelected() && !hasCategorieSelected() && (!hasInformations() && !hasCategories()) && !isLoading())">
+    <div class="alert alert-danger" role="alert">Oups! Cette page n'existe plus.</div>
+</div>
+
+<div class="container-fluid" *ngIf="!hasInformations() && !hasCategories() && hasCategorieSelected() && !isLoading()">
+    <div class="alert alert-warning" role="alert">Oups! Cette page est vide.</div>
+</div>
+
+<div *ngIf="isLoading()" class="content container-fluid"></div>
+
+<button (click)="scrollTop()" *ngIf="showUp" class="up" md-fab><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>

@@ -1,0 +1,136 @@
+import { Injectable } from '@angular/core';
+import { Http, Jsonp, Response } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
+
+import { ConfigProvider }  from './config.provider';
+/**
+ * Model imports
+ */
+import { Categorie } from '../model/Categorie';
+import { Information } from '../model/Information';
+import {MdSnackBar} from '@angular/material';
+
+//fourni les données peux les garder en cache
+@Injectable()
+export class ServiceProvider {
+
+    baseUrl : string;
+    baseUrlTyForge : string;
+    constructor(private config: ConfigProvider, private http : Http, private jsonp : Jsonp, private snackBar: MdSnackBar) { 
+        this.baseUrl = this.config.getPortailAPIUrl();
+        this.baseUrlTyForge = this.config.getTyForgeAPIUrl();
+    }
+  
+    private handleError (error: Response | any) {
+        // In a real world app, we might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+          const body = error.json() || '';
+          const err = body.error || JSON.stringify(body);
+          errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+          errMsg = error.message ? error.message : error.toString();
+        }
+        this.snackBar.open('Erreur de réseau', 'OK', {
+            duration: 7000,
+        });
+        return Observable.throw(errMsg);
+    }
+
+    getAllCategories() : Observable<Categorie>{
+        return this.http.get(this.baseUrl+"categories").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+    
+    getFirstCategories() : Observable<Categorie>{
+        return this.http.get(this.baseUrl+"categories/firstoffirst").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    getCategorie(unix : string) : Observable<Categorie> {
+        return this.http.get(this.baseUrl+"categories/" + unix).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    getInformation(unix : string) : Observable<Information>{
+        return this.http.get(this.baseUrl+"informations/" + unix).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    getInformations() : Observable<Information[]>{
+        return this.http.get(this.baseUrl+"informations").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    putCategorie(categorie : any) : Observable<any>{
+        return this.http.put(this.baseUrl+"categories", categorie).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    putInformation(information : Information) : Observable<any>{
+        return this.http.put(this.baseUrl+"informations", information).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    postCategorie(categorie : Categorie) : Observable<number>{
+        return this.http.post(this.baseUrl+"categories", categorie).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    postInformation(information : Information) : Observable<number>{
+        return this.http.post(this.baseUrl+"informations", information).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    deleteCategorie(unix : string) : Observable<any>{
+        return this.http.delete(this.baseUrl+"categories/"+unix).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    deleteInformation(unix : string) : Observable<any>{
+        return this.http.delete(this.baseUrl+"informations/"+unix).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    putImgInfo(img : any, id : number){
+        return this.http.put(this.baseUrl + "images/informations/"+ id , img).catch(error=>{ return this.handleError(error)});
+    }
+
+    getUserUnixName() : Observable<string>{
+        return this.http.get(this.baseUrl+"user").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    getUserRealName(unix : String) : Observable<string>{
+        return this.http.get(this.baseUrlTyForge+"?0=users&1=" + unix + "&2=name").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+
+    getUserProjects(unix : String) : Observable<any>{
+        return this.http.get(this.baseUrlTyForge+"?0=users&1=" + unix + "&2=projects").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getInformationSearchWithParent(content : String, parent : string) : Observable<Information[]>{
+        return this.http.get(this.baseUrl+"recherche/" + content + "/"+parent).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getInformationSearch(content : String) : Observable<Information[]>{
+        return this.http.get(this.baseUrl+"recherche/" + content).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+    
+    getUnixList() : Observable<any[]>{
+      return this.http.get(this.baseUrl+"unix").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getPotentialParentsUnix(unix :string) : Observable<string[]>{
+      return this.http.get(this.baseUrl+"potentialparent/"+unix).map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getCategorieParentsUnix(unix : string) : Observable<string[]>{
+      return this.http.get(this.baseUrl+'categories/'+unix + "/parents/unix").map(res => res.json()).catch(error=>{ return this.handleError(error)}); 
+    }
+  
+    getInformationParentsUnix(unix : string) : Observable<string[]>{
+      return this.http.get(this.baseUrl + 'informations/' + unix + '/parents/unix').map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getNewCategorie() : Observable<Categorie>{
+      return this.http.post(this.baseUrl + 'categories', "").map(res => res.json()).catch(error=>{ return this.handleError(error)});
+    }
+  
+    getNewInformation() : Observable<Information> {
+      return this.http.post(this.baseUrl+"informations", "").map(res => res.json()).catch(error=>{ return this.handleError(error)}); 
+    }
+  
+    getTagsList() : Observable<any> {
+      return this.http.get(this.baseUrl+"tagslist").map(res => res.json()).catch(error=>{ return this.handleError(error)}); 
+    }
+
+}

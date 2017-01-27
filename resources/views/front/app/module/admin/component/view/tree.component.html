@@ -1,0 +1,8 @@
+<div class="cat" *ngIf="!isShow()"><a (click)="showMe()"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a><a (click)="this.select()"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> {{this.data.unix}}</a></div>
+<div class="cat" *ngIf="isShow()">
+    <a (click)="hideMe()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a><a (click)="this.select()"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> {{this.data.unix}}</a>
+    <tree *ngFor="let cat of this.data.categories" (informationSelected)="selectInformation($event)" (categorieSelected)="selectCategorie($event)" [data]="cat"></tree>
+    <ul>
+        <li *ngFor="let info of this.data.informations"><a (click)="selectInformation(info)"> <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> {{info.unix}}</a></li>
+    </ul>
+</div>

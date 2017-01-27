@@ -1,0 +1,27 @@
+<md-card *ngIf="!home" class="card">
+	<md-card-title class="card-title" [mdTooltip]="this.categorie.resume" (click)="selectChild()">{{ this.categorie.titre }}</md-card-title>
+	 <md-card-content>
+	   <table class="table table-condensed table-hover">
+	     <tbody>
+	       <tr *ngFor="let child of this.children; let i = index;">
+	         <td (click)="selectChild(child)"><a><span class="glyphicon" [ngClass]="childrenClass[i]" aria-hidden="true"></span> {{ " " + child.titre }}</a></td>
+	       </tr>
+	       <tr>
+	         <td (click)="selectChild()" ><a><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></a></td>
+	       </tr>
+	     </tbody>
+	   </table>
+	 </md-card-content>
+</md-card>
+
+<md-card class="card-home" *ngIf="home" >
+    <md-card-title class="card-title" (click)="selectChild()">{{ this.categorie.titre }}</md-card-title>
+    <div class="img-container">
+		<img (click)="selectChild()" md-card-image [src]="'../resources/views/front/app/resources/img/categories/' + this.categorie.id + '.png'">
+	</div>
+  	<md-card-content>
+	    <p>
+	     {{ categorie.detail }}
+	    </p>
+  	</md-card-content>
+</md-card>

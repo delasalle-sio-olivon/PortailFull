@@ -1,0 +1,45 @@
+<div *ngIf="hasInformationSelected()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group input-group-lg" [ngClass]="titreClass()">
+                    <span class="input-group-addon" id="sizing-addon1">Titre</span>
+                    <input type="text" class="form-control" [(ngModel)]="this.informationSelected.titre" aria-describedby="Editor title">
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="input-group" [ngClass]="unixClass()">
+                    <span class="input-group-addon" id="sizing-addon1">Nom unix</span>
+                    <input (focusout)="checkForChange(2)" type="text" class="form-control"  [(ngModel)]="this.informationSelected.unix" aria-describedby="Editor unix">
+                </div>
+                <div class="input-group" [ngClass]="resumeClass()">
+                    <span class="input-group-addon" id="sizing-addon1">Resumé</span>
+                    <input (focusout)="checkForChange(3)" type="text" class="form-control" [(ngModel)]="this.informationSelected.resume" aria-describedby="Editor resum">
+                </div>
+                <div class="input-group">
+                    <label>Détail</label>
+                    <textarea  (focusout)="checkForChange(4)" class="form-control" [(ngModel)]="this.informationSelected.detail"></textarea>
+                </div>
+                <div class="input-group">
+                    <parentInfoEditor [unixList]="unixList" [informationSelected]="this.informationSelected"  (parentsEmiter)="syncParents($event)"></parentInfoEditor>
+                </div>
+                <div class="catImg thumbnail">
+                    <img [src]="img">
+                </div>
+                <div class="input-group">
+                    <input type="file" ng2FileSelect #file (change)="imgChange(file)"  [uploader]="uploader" />
+                </div>
+                <div class="input-group">
+                	<tagEditor [tagsSelected]="this.informationSelected.tags" (listEmiter)="syncTags($event)"></tagEditor>
+                </div>
+                <div class="input-group">
+		        	<button (click)="saveChanges()" type="button" class="btn btn-primary">Engregistrer</button>
+		        </div>
+                <div class="input-group">
+                    <a class="btn btn-danger" role="button" (click)="deleteInfo()">Supprimer l'information</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

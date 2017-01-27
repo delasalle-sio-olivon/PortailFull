@@ -1,0 +1,17 @@
+
+Mapping des informations
+PUT portail
+{
+  "mappings": {
+    "information": { 
+      "_all":       { "enabled": true  }, 
+      "properties": { 
+        "unix" : { "type" : "keyword"},
+        "titre":    { "type": "text"  }, 
+        "resume":     { "type": "text"  }, 
+        "detail":      { "type": "text" },
+        "parents": { "type": "integer"}
+      }
+    }
+  }
+}

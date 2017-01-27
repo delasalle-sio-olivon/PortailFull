@@ -1,0 +1,45 @@
+<div *ngIf="hasCategorieSelected()" >
+    <div *ngIf="!isFirstOfFirst()" class="container-fluid">
+        <div class="input-group input-group-lg" [ngClass]="titreClass()">
+            <span class="input-group-addon" id="sizing-addon1">Titre</span>
+            <input type="text" class="form-control" [(ngModel)]="this.categorieSelected.titre" aria-describedby="Editor title">
+        </div>
+        
+        <div class="input-group" [ngClass]="unixClass()">
+            <span class="input-group-addon" id="sizing-addon1">Nom unix</span>
+            <input type="text" class="form-control"  [(ngModel)]="this.categorieSelected.unix" aria-describedby="Editor unix">
+        </div>
+        <div class="input-group" [ngClass]="resumeClass()">
+            <span class="input-group-addon" id="sizing-addon1">Resumé</span>
+            <input type="text" class="form-control" [(ngModel)]="this.categorieSelected.resume" aria-describedby="Editor resum">
+        </div>
+        <div class="input-group">
+            <label>Détail</label>
+            <textarea class="form-control" [(ngModel)]="this.categorieSelected.detail"></textarea>
+        </div>
+        <div class="input-group">
+        	<parentCatEditor [unixList]="unixList" [categorieSelected]="this.categorieSelected" (parentsEmiter)="syncParents($event)" ></parentCatEditor> 
+        </div>
+        <div class="catImg thumbnail">
+            <img [src]="img">
+        </div>
+        <div class="input-group">
+            <input #input (change)="imgChange(input)" ng2FileSelect [uploader]="uploader" type="file"/>
+        </div>
+        <div class="input-group">
+        	<tagEditor [tagsSelected]="this.categorieSelected.tags" (listEmiter)="syncTags($event)"></tagEditor>
+        </div>
+        <div class="input-group">
+        	<button (click)="saveChanges()" type="button" class="btn btn-primary">Engregistrer</button>
+        </div>
+        <div class="input-group">
+            <a class="btn btn-danger" role="button" (click)="deleteCat()">Supprimer la catégorie</a>
+        </div>
+    </div>
+    <div *ngIf="isFirstOfFirst()">
+        <h2>{{this.categorieSelected.titre}}</h2>
+        <p><b>Nom unix :</b> {{this.categorieSelected.unix}}<p>
+        <p>{{this.categorieSelected.resume}}</p>
+    </div>
+</div>
+

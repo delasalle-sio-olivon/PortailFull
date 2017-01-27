@@ -1,0 +1,51 @@
+:host{
+	min-height : 100vh;
+}
+.container-fluid{
+    max-width : 1300px;
+    padding-bottom: 10px;
+    
+}
+
+.mid-full{
+    padding : 3px 20px;
+    width : 100%;
+}
+.mid-main{
+    width : 100%;
+    max-width:  1300px;
+
+    margin : 0 auto;
+}
+
+.mid{
+    background-color: #2196F3;
+    color : rgba(255, 255, 255, 0.70);
+    font-size : 20px;
+
+    margin-bottom : 25px;
+}
+
+h1{
+    color : white;
+    border-bottom: 3px solid #64FFDA;
+    display: inline;
+    line-height: 90px;
+    padding-right: 30px;
+}
+p{
+    display: inline;
+}
+a:hover{
+    color: #00BFA5;
+}
+
+.up{
+	background-color : #00BFA5;
+	position : fixed;
+	bottom : 172px;
+	right : 200px;
+}
+.up .glyphicon{
+	font-size : 20px;
+}

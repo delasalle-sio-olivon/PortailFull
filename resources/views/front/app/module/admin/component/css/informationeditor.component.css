@@ -1,0 +1,14 @@
+.infoImg{    
+    background-image: url(../resources/views/front/app/ressource/img/angular.png);
+    background-position: center;
+    background-size: cover;
+    width : 250px;
+    height : 250px;
+
+    margin : 20px;
+}
+
+.input-group{
+    margin : 20px;
+
+}

@@ -1,0 +1,11 @@
+<div class="select">
+    <label>Parents (nom unix) : </label>
+    <ng-select (data)="a"
+              [active]="parents"
+              [multiple]="true"
+              [items]="this.liste"
+              (data)="refreshValue($event)"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              placeholder="Selectionner un ou plusieurs parents"></ng-select>
+</div>
